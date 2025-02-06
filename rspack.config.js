@@ -1,7 +1,3 @@
-/**
- * rspack 打包配置文件
- */
-// @ts-check
 const rspack = require("@rspack/core");
 const { defineConfig } = require("@rspack/cli");
 const path = require("path");
@@ -43,7 +39,6 @@ const config = defineConfig({
       },
       {
         test: /\.(js|jsx)$/,
-        // exclude: [/agora-rtc-sdk-ng/],
         use: {
           loader: "builtin:swc-loader",
           options: {
