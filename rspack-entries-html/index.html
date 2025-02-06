@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="utf-8" />
+  <link rel="stylesheet" type="text/css" href="<%= htmlRspackPlugin.files.publicPath %>assets/style/iconfont.css">
+  <script>
+    window.PUBLIC_URL = '<%= htmlRspackPlugin.files.publicPath %>'
+
+    if (typeof globalThis === 'undefined') {
+      globalThis = window
+    }
+    console.log(new Date(), new Date().getMilliseconds(), '[startup] html load')
+
+    function matchffff(str) {
+      if (!str || !str.match) return false
+      return str.match(/(abc|efc)/)
+    }
+
+    if (
+      matchffff(window.location.host) ||
+      (window.abc && window.abc.config && matchffff(window.abc.config.appServer))
+    ) {
+      _hideConsole()
+    }
+
+    function _hideConsole() {
+      window.console._log = window.console.log
+      window.console._debug = window.console.debug
+      window.console._info = window.console.info
+      window.console._warn = window.console.warn
+      window.console.log = function () { }
+      window.console.debug = function () { }
+      window.console.info = function () { }
+      window.console.warn = function () { }
+    }
+
+    function _useConsole() {
+      if (!window.console._log) return
+      window.console.log = window.console._log
+      window.console.debug = window.console._debug
+      window.console.info = window.console._info
+      window.console.warn = window.console._warn
+    }
+
+    function _uploadLogByTest() {
+      if (window.loggerSdk) {
+        window.loggerSdk.uploadLogByTest()
+      }
+    }
+    function _startAduioProcessDataDump() {
+      if (!window.abc || !window.abc.media) return
+      window.abc.media.startAduioProcessDataDump()
+    }
+    function _stopAduioProcessDataDump() {
+      if (!window.abc || !window.abc.media) return
+      window.abc.media.stopAduioProcessDataDump()
+    }
+  </script>
+
+
+</head>
+
+<body>
+
+
+</body>
+
+</html>
